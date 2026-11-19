@@ -16,7 +16,7 @@ public class RegistrationHandler {
     public RegistrationHandler(Scanner sc) {
         this.sc = sc;
     }
-
+    
     // add student in registration queue
     public void registerAttendee() {
         System.out.print("Enter name: ");

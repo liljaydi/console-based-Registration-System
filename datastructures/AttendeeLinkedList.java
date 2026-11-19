@@ -12,6 +12,10 @@ public class AttendeeLinkedList {
 
     // add registered student inside linkedlist
     public void append(Attendee student) {
+        if (student == null) {
+            System.out.println("Cannot append a null attendee");
+            return;
+        }
         Node newNode = new Node(student);
 
         System.out.print("Processing... ");
@@ -49,7 +53,9 @@ public class AttendeeLinkedList {
 
     // removes registered student
     public void remove(Attendee student) {
-        // add a checker if student is not null
+        if (student == null) {
+            return;
+        }
 
         Node current = head;
         Node prev = null;
