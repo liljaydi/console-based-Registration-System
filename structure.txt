@@ -1,0 +1,20 @@
+// non‑intrusive (external‑node) linked list
+/*
+    src/
+    ├── model/
+    │   └── Attendee.java
+    │
+    ├── datastructures/
+    │   ├── AttendeeLinkedList.java
+    │   ├── UndoStack.java
+    │   ├── RegistrationQueue.java
+    │   └── Node.java
+    │
+    ├── algorithms/
+    │   └── SearchAndSort.java
+    │
+    ├── service/
+    │   └── RegistrationHandler.java
+    │
+    └── Main.java
+*/
