@@ -9,7 +9,7 @@ public class Node {
         this.data = data;
     }
 
-    // methods below is for search and sort access
+    // methods below is for sort access
     // since data and next properties are package-private
 
     public Attendee getData() {

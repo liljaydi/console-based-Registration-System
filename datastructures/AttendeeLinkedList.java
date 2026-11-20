@@ -1,4 +1,5 @@
 package datastructures;
+import algorithms.MergeSort;
 import model.Attendee;
 
 public class AttendeeLinkedList {
@@ -34,6 +35,10 @@ public class AttendeeLinkedList {
 
     // display registered student
     public void display() {
+        // sort linkedlist first before displaying
+        sort();
+
+        // display sorted linkedlist
         System.out.println("Atendee List:");
 
         Node current = head;
@@ -49,6 +54,20 @@ public class AttendeeLinkedList {
             current = current.next;
         }
         System.out.println();
+    }
+
+    // calls sortNodes() method from 'algorithms' package
+    public void sort() {
+        // returns the sorted head
+        head = MergeSort.sortNodes(head);
+        tail = head;
+
+        // update tail after sorting
+        if (tail != null) {
+            while (tail.next != null) {
+                tail = tail.next;
+            }
+        }
     }
 
     // removes registered student
@@ -84,21 +103,10 @@ public class AttendeeLinkedList {
 
     // setters and getters below is used for Linear Search
     // since Linear Search is outside the package 'datastructures'
-    // head and tail are not directly accessible by 'algorithms' package
 
+    /*
     public Node getHead() {
         return head;
     }
-
-    public Node getTail() {
-        return tail;
-    }
-
-    public void setHead(Node head) {
-        this.head = head;
-    }
-
-    public void setTail(Node tail) {
-        this.tail = tail;
-    }
+    */
 }

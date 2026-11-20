@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class RegistrationHandler {
     Scanner sc;
+    
     // records of registration line
     RegistrationQueue queue = new RegistrationQueue();
     // records for registered student
@@ -57,7 +58,6 @@ public class RegistrationHandler {
             return;
         }
 
-        MergeSort.sort(list);
         list.display();
     }
     

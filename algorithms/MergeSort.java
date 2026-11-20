@@ -1,21 +1,14 @@
 package algorithms;
-import datastructures.AttendeeLinkedList;
 import datastructures.Node;
 
 public class MergeSort {
-    public static void sort(AttendeeLinkedList list) {
-        if (list == null || list.getHead() == null || list.getHead().getNext() == null) {
-            return;
+    public static Node sortNodes(Node head) {
+        if (head == null || head.getNext() == null) {
+            return head;
         }
 
-        Node sortedHead = mergeSortHelper(list.getHead());
-        list.setHead(sortedHead);
-
-        Node current = sortedHead;
-        while (current.getNext() != null) {
-            current = current.getNext();
-        }
-        list.setTail(current);
+        Node sortedHead = mergeSortHelper(head);
+        return sortedHead;
     }
 
     private static Node mergeSortHelper(Node head) {
