@@ -25,11 +25,16 @@ public class RegistrationHandler {
         System.out.print("Enter course and section: ");
         String courseSection = sc.nextLine();
 
-        Attendee student = new Attendee(fullName, courseSection);
+        Attendee student = null;
+        try {
+            student = new Attendee(fullName, courseSection);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         queue.enqueue(student);
-
-        queue.display(); // this code is for data checking
+        //queue.display(); // this code is for data checking
     }
 
     // process registration
@@ -44,10 +49,9 @@ public class RegistrationHandler {
         Attendee student = queue.dequeue();
         
         list.append(student); // add inside linkedlist
-        queue.display(); // this code is for data checking
+        //queue.display(); // this code is for data checking
         stack.push(student); // add inside stack
-
-        stack.display(); // this code is for data checking
+        //stack.display(); // this code is for data checking
     }
 
     // handles displaying attendee
@@ -59,6 +63,10 @@ public class RegistrationHandler {
         }
 
         list.display();
+
+        System.out.print("Press Enter to return to menu...");
+        sc.nextLine();
+        System.out.println();
     }
     
     public void searchAttendee() {
@@ -79,6 +87,9 @@ public class RegistrationHandler {
             System.out.println("Attendee found!");
             System.out.println("Name: " + student.getFullName());
             System.out.println("Course & Section: " + student.getCourseSection() + "\n");
+            System.out.print("Press Enter to return to menu...");
+            sc.nextLine();
+            System.out.println();
         }
     }
 
@@ -90,11 +101,8 @@ public class RegistrationHandler {
         }
         
         Attendee student = stack.pop();
-
         list.remove(student);
-
         System.out.println("Undo " + student.getFullName() + " registration\n");
-
-        stack.display(); // this code is for data checking
+        //stack.display(); // this code is for data checking
     }
 }

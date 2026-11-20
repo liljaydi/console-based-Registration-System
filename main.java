@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import service.RegistrationHandler;
+import util.Validation;
 
 public class main {
     public static void main(String[] args) {
@@ -17,9 +18,7 @@ public class main {
             System.out.println("[5] Undo Last Registration");
             System.out.println("[6] Exit");
             System.out.println("-----------------------------------------");
-            System.out.print("Enter choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();
+            choice = Validation.readValidInteger("Enter choice: ", sc, 1, 6);
             System.out.println();
 
             switch (choice) {
@@ -42,7 +41,7 @@ public class main {
                     System.out.println("Exiting...");
                     break;
                 default:
-                    System.out.println("Invalid choice\n");
+                    System.out.println("Invalid input\n");
             }
         } while (choice != 6);
     }
