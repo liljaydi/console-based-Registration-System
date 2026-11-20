@@ -18,7 +18,7 @@ public class main {
             System.out.println("[5] Undo Last Registration");
             System.out.println("[6] Exit");
             System.out.println("-----------------------------------------");
-            choice = Validation.readValidInteger("Enter choice: ", sc, 1, 6);
+            choice = Validation.readValidInteger("Enter choice: ", sc);
             System.out.println();
 
             switch (choice) {

@@ -17,6 +17,9 @@ src/
 ├── service/
 │   └── RegistrationHandler.java
 │
+├── util/
+│   └── Validation.java
+│
 └── Main.java
 
 Defensive programming means adding an extra check to protect a method or operation, 
