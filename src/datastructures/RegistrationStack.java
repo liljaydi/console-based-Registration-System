@@ -3,9 +3,11 @@ import model.Attendee;
 
 public class RegistrationStack {
     private Node top;
+    private int size;
 
     public RegistrationStack() {
         top = null;
+        size = 0;
     }
 
     // Add on top - O(1)
@@ -17,15 +19,18 @@ public class RegistrationStack {
         Node newNode = new Node(student);
         newNode.next = top;
         top = newNode;
+        size++;
     }
 
     // Remove from top - O(1)
     public Attendee pop() {
         if (isEmpty()) {
+            System.out.println("Stack is empty.\n");
             return null;
         }
         Attendee removed = top.data;
         top = top.next;
+        size--;
         return removed;
     }
 
@@ -42,12 +47,26 @@ public class RegistrationStack {
         }
         Node current = top;
         int position = 1;
-        System.out.println("Checking stack data...");
+        System.out.println("Registration history:");
         while (current != null) {
-            System.out.println(position + ". " + current.data.getFullName());
+            System.out.println(position + ". " 
+                + current.data.getFullName() + " - " 
+                + current.data.getCourseSection());
             current = current.next;
             position++;
         }
         System.out.println();
+    }
+
+    public Attendee peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.\n");
+            return null;
+        }
+        return top.data;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

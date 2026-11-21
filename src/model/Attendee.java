@@ -17,8 +17,8 @@ public class Attendee {
             throw new IllegalArgumentException("Invalid name format\n");
         }
         // trim() removes whitespace from the beginning and end of a String
-        this.fullName = fullName.trim();
-        this.courseSection = courseSection.trim();
+        this.fullName = fullName;
+        this.courseSection = courseSection.toUpperCase();
     }
 
     public String getFullName() {

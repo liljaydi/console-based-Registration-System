@@ -2,18 +2,20 @@ package util;
 import java.util.Scanner;
 
 public class Validation {
-    public static int readValidInteger(String prompt, Scanner sc) {
+    public static int readValidInteger(Scanner sc, int minRange, int maxRange) {
         int attempts = 0;
-        while (attempts < 4) {
-            System.out.print(prompt);
+        while (attempts < 5) {
+            System.out.print("Enter choice: ");
+            // receive user input as a string
             String input = sc.nextLine().trim();
             try {
-                // tries to turn a character number into an integer
+                // Convert the input string into an integer
                 int number = Integer.parseInt(input);
-                if (number >= 1 && number <= 6) {
+                if (number >= minRange && number <= maxRange) {
                     return number;
                 } else {
-                    System.out.println("Please enter an integer between 1 and 6");
+                    System.out.println("Please enter an integer between " 
+                        + minRange + " and " + maxRange);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid integer");

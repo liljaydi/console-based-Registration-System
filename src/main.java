@@ -7,7 +7,11 @@ public class main {
         Scanner sc = new Scanner(System.in);
         RegistrationHandler register = new RegistrationHandler(sc);
 
-        System.out.println("TECH SUMMIT EVENT REGISTRATION\n");
+        System.out.println("===============================");
+        System.out.println("|                             |");
+        System.out.println("|  EVENT REGISTRATION SYSTEM  |");
+        System.out.println("|                             |");
+        System.out.println("===============================\n");
 
         int choice;
         do {
@@ -15,34 +19,21 @@ public class main {
             System.out.println("[2] Process Registration");
             System.out.println("[3] View Attendee (Sorted Alphabetically)");
             System.out.println("[4] Search Attendee");
-            System.out.println("[5] Undo Last Registration");
-            System.out.println("[6] Exit");
+            System.out.println("[5] View Registration History");
+            System.out.println("[6] Undo Last Registration");
+            System.out.println("[7] Exit");
             System.out.println("-----------------------------------------");
-            choice = Validation.readValidInteger("Enter choice: ", sc);
+            choice = Validation.readValidInteger(sc, 1, 7);
             System.out.println();
 
-            switch (choice) {
-                case 1:
-                    register.registerAttendee();
-                    break;
-                case 2:
-                    register.processRegistration();
-                    break;
-                case 3:
-                    register.viewAttendees();
-                    break;
-                case 4:
-                    register.searchAttendee();
-                    break;
-                case 5:
-                    register.undoLastRegistration();
-                    break;
-                case 6:
-                    System.out.println("Exiting...");
-                    break;
-                default:
-                    System.out.println("Invalid input\n");
-            }
-        } while (choice != 6);
+            if (choice == 1) register.registerAttendee();
+            if (choice == 2) register.processRegistration();
+            if (choice == 3) register.viewAttendees();
+            if (choice == 4) register.searchAttendee();
+            if (choice == 5) register.displayStack();
+            if (choice == 6) register.undoLastRegistration();
+        } while (choice != 7);
+
+        System.out.println("Exiting...");
     }
 }

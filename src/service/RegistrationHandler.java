@@ -2,17 +2,19 @@ package service;
 import datastructures.*;
 import algorithms.*;
 import model.Attendee;
+import util.Validation;
+
 import java.util.Scanner;
 
 public class RegistrationHandler {
-    Scanner sc;
+    private Scanner sc;
     
     // records of registration line
-    RegistrationQueue queue = new RegistrationQueue();
+    private RegistrationQueue queue = new RegistrationQueue();
     // records for registered student
-    AttendeeLinkedList list = new AttendeeLinkedList();
+    private AttendeeLinkedList list = new AttendeeLinkedList();
     // records for undo registration
-    RegistrationStack stack = new RegistrationStack();
+    private RegistrationStack stack = new RegistrationStack();
     
     public RegistrationHandler(Scanner sc) {
         this.sc = sc;
@@ -22,19 +24,18 @@ public class RegistrationHandler {
     public void registerAttendee() {
         System.out.print("Enter name: ");
         String fullName = sc.nextLine();
-        System.out.print("Enter course and section: ");
+        System.out.print("Enter course/section: ");
         String courseSection = sc.nextLine();
 
         Attendee student = null;
         try {
-            student = new Attendee(fullName, courseSection);
+            student = new Attendee(fullName.trim(), courseSection.trim());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return;
         }
 
         queue.enqueue(student);
-        //queue.display(); // this code is for data checking
     }
 
     // process registration
@@ -44,14 +45,46 @@ public class RegistrationHandler {
             System.out.println("No pending registrations.\n");
             return;
         }
-        
+
+        int queueSize = queue.getSize();
+        if (queueSize == 1) {
+            processNextRegistration();
+            System.out.println();
+            return;
+        }
+
+        queue.display();
+        System.out.println("[1] Process Next Registration");
+        System.out.println("[2] Process All Registrations");
+        System.out.println("[3] Return to Main Menu");
+        int choice = Validation.readValidInteger(sc, 1, 3);
+        System.out.println();
+
+        if (choice == 1) {
+            processNextRegistration();
+            System.out.println();
+        }
+
+        if (choice == 2) {
+            processAllRegistrations(queueSize);
+            System.out.println();
+        }
+    }
+
+    // helper method
+    private void processAllRegistrations(int count) {
+        for (int i = 0; i < count; i++) {
+            processNextRegistration();
+        }
+    }
+
+    // helper method
+    private void processNextRegistration() {
         // get the first data in queue
         Attendee student = queue.dequeue();
         
         list.append(student); // add inside linkedlist
-        //queue.display(); // this code is for data checking
         stack.push(student); // add inside stack
-        //stack.display(); // this code is for data checking
     }
 
     // handles displaying attendee
@@ -93,16 +126,39 @@ public class RegistrationHandler {
         }
     }
 
+    public void displayStack() {
+        if (stack.isEmpty()) {
+            System.out.println("No registered attendees found.\n");
+            return;
+        }
+
+        stack.display();
+        System.out.print("Press Enter to return to menu...");
+        sc.nextLine();
+        System.out.println();
+    }
+
     public void undoLastRegistration() {
         // checks if stack is empty
         if (stack.isEmpty()) {
             System.out.println("No registrations available to undo.\n");
             return;
         }
-        
-        Attendee student = stack.pop();
-        list.remove(student);
-        System.out.println("Undo " + student.getFullName() + " registration\n");
-        //stack.display(); // this code is for data checking
+
+        Attendee student = stack.peek();
+        System.out.println("Confirm undo registration for " + student.getFullName() +"?");
+        System.out.println("[1] Confirm");
+        System.out.println("[2] Cancel");
+        int choice = Validation.readValidInteger(sc, 1, 2);
+        System.out.println();
+
+        if (choice == 1) {
+            stack.pop();
+            list.remove(student);
+            System.out.println("Undo registration successful\n");
+            return;
+        }
+
+        System.out.println("Undo registration cancelled\n");
     }
 }

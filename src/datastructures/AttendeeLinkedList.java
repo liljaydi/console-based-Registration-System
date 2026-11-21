@@ -30,7 +30,7 @@ public class AttendeeLinkedList {
             tail = newNode;
         }
 
-        System.out.println(student.getFullName() + " registered!\n");
+        System.out.println(student.getFullName() + " registered!");
     }
 
     // display registered student
@@ -39,7 +39,7 @@ public class AttendeeLinkedList {
         sort();
 
         // display sorted linkedlist
-        System.out.println("Atendee List:");
+        System.out.println("Attendee List:");
 
         Node current = head;
         int count = 1;
@@ -49,7 +49,7 @@ public class AttendeeLinkedList {
 
             // display student information
             System.out.println(count++ + ". Name: " + fullName);
-            System.out.println("   Course & Section: " + courseSection);
+            System.out.println("   Course/Section: " + courseSection);
 
             current = current.next;
         }

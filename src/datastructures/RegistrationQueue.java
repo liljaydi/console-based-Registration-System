@@ -4,10 +4,12 @@ import model.Attendee;
 public class RegistrationQueue {
     private Node front;
     private Node rear;
+    private int size;
 
     public RegistrationQueue() {
         front = null;
         rear = null;
+        size = 0;
     }
 
     // Add at the back - O(1)
@@ -24,12 +26,14 @@ public class RegistrationQueue {
             rear.next = newNode;
             rear = newNode;
         }
+        size++;
         System.out.println(student.getFullName() + " added to registration line.\n");
     }
 
     // Remove from the front - O(1)
     public Attendee dequeue() {
         if (isEmpty()) {
+            System.out.println("Queue is empty.\n");
             return null;
         }
         Attendee removed = front.data;
@@ -37,7 +41,7 @@ public class RegistrationQueue {
         if (front == null) {
             rear = null; // queue became empty
         }
-        // size--;
+        size--;
         return removed;
     }
 
@@ -45,7 +49,6 @@ public class RegistrationQueue {
         return front == null;
     }
 
-    // code below is only for testing and checking data
     // Print front to back
     public void display() {
         if (isEmpty()) {
@@ -54,12 +57,18 @@ public class RegistrationQueue {
         }
         Node current = front;
         int position = 1;
-        System.out.println("Checking queue data...");
+        System.out.println("Pending registration:");
         while (current != null) {
-            System.out.println(position + ". " + current.data.getFullName());
+            System.out.println(position + ". " 
+                + current.data.getFullName() + " - " 
+                + current.data.getCourseSection());
             current = current.next;
             position++;
         }
         System.out.println();
+    }
+
+    public int getSize() {
+        return size;
     }
 }
