@@ -1,6 +1,5 @@
 package service;
 import datastructures.*;
-import algorithms.*;
 import model.Attendee;
 import util.Validation;
 
@@ -112,14 +111,14 @@ public class RegistrationHandler {
         System.out.print("Enter name to search: ");
         String name = sc.nextLine();
 
-        Attendee student = LinearSearch.search(list, name);
+        Attendee student = list.search(name);
 
         if (student == null) {
             System.out.println("No attendee found with that name.\n");
         } else {
-            System.out.println("Attendee found!");
+            System.out.println("Attendee found!\n");
             System.out.println("Name: " + student.getFullName());
-            System.out.println("Course & Section: " + student.getCourseSection() + "\n");
+            System.out.println("Course/Section: " + student.getCourseSection() + "\n");
             System.out.print("Press Enter to return to menu...");
             sc.nextLine();
             System.out.println();

@@ -1,5 +1,5 @@
 package datastructures;
-import algorithms.MergeSort;
+import algorithms.*;
 import model.Attendee;
 
 public class AttendeeLinkedList {
@@ -56,8 +56,9 @@ public class AttendeeLinkedList {
         System.out.println();
     }
 
+    // helper method
     // calls sortNodes() method from 'algorithms' package
-    public void sort() {
+    private void sort() {
         // returns the sorted head
         head = MergeSort.sortNodes(head);
         tail = head;
@@ -101,12 +102,10 @@ public class AttendeeLinkedList {
         return head == null;
     }
 
-    // setters and getters below is used for Linear Search
-    // since Linear Search is outside the package 'datastructures'
-
-    /*
-    public Node getHead() {
-        return head;
+    // call search method here 
+    // since we want to encapsulate head property
+    // we will not add a getter/setters
+    public Attendee search(String name) {
+        return LinearSearch.search(head, name);
     }
-    */
 }
