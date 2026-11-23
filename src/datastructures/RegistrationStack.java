@@ -38,7 +38,6 @@ public class RegistrationStack {
         return top == null;
     }
 
-    // code below is only for testing and checking data
     // Print top to bottom
     public void display() {
         if (isEmpty()) {

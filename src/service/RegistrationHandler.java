@@ -26,6 +26,7 @@ public class RegistrationHandler {
         System.out.print("Enter course/section: ");
         String courseSection = sc.nextLine();
 
+        // create new attendee
         Attendee student = null;
         try {
             student = new Attendee(fullName.trim(), courseSection.trim());
@@ -34,6 +35,7 @@ public class RegistrationHandler {
             return;
         }
 
+        // queue student in registration line
         queue.enqueue(student);
     }
 
@@ -45,6 +47,8 @@ public class RegistrationHandler {
             return;
         }
 
+        // if registration line only has one student
+        // process the student directly
         int queueSize = queue.getSize();
         if (queueSize == 1) {
             processNextRegistration();
@@ -52,6 +56,7 @@ public class RegistrationHandler {
             return;
         }
 
+        // else display queue line and processing option
         queue.display();
         System.out.println("[1] Process Next Registration");
         System.out.println("[2] Process All Registrations");
@@ -59,11 +64,13 @@ public class RegistrationHandler {
         int choice = Validation.readValidInteger(sc, 1, 3);
         System.out.println();
 
+        // process next student
         if (choice == 1) {
             processNextRegistration();
             System.out.println();
         }
 
+        // process all student
         if (choice == 2) {
             processAllRegistrations(queueSize);
             System.out.println();
@@ -94,8 +101,8 @@ public class RegistrationHandler {
             return;
         }
 
+        // display registered student
         list.display();
-
         System.out.print("Press Enter to return to menu...");
         sc.nextLine();
         System.out.println();
@@ -111,6 +118,7 @@ public class RegistrationHandler {
         System.out.print("Enter name to search: ");
         String name = sc.nextLine();
 
+        // search student from list
         Attendee student = list.search(name);
 
         if (student == null) {
@@ -125,12 +133,15 @@ public class RegistrationHandler {
         }
     }
 
+    // display registration history
     public void displayStack() {
+        // check if stack is empty
         if (stack.isEmpty()) {
             System.out.println("No registered attendees found.\n");
             return;
         }
 
+        // display stack
         stack.display();
         System.out.print("Press Enter to return to menu...");
         sc.nextLine();
@@ -144,6 +155,7 @@ public class RegistrationHandler {
             return;
         }
 
+        // ask for undo confirmation
         Attendee student = stack.peek();
         System.out.println("Confirm undo registration for " + student.getFullName() +"?");
         System.out.println("[1] Confirm");
@@ -151,6 +163,7 @@ public class RegistrationHandler {
         int choice = Validation.readValidInteger(sc, 1, 2);
         System.out.println();
 
+        // if confirmed, remove from list
         if (choice == 1) {
             stack.pop();
             list.remove(student);

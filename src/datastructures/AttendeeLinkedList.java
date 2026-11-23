@@ -17,6 +17,7 @@ public class AttendeeLinkedList {
             System.out.println("Cannot append a null attendee");
             return;
         }
+        // create new Node for linkedlist
         Node newNode = new Node(student);
 
         System.out.print("Processing... ");
@@ -104,7 +105,7 @@ public class AttendeeLinkedList {
 
     // call search method here 
     // since we want to encapsulate head property
-    // we will not add a getter/setters
+    // we will not add a getter/setters for LinearSearch.java
     public Attendee search(String name) {
         return LinearSearch.search(head, name);
     }

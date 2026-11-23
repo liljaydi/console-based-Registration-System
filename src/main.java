@@ -2,19 +2,20 @@ import java.util.Scanner;
 import service.RegistrationHandler;
 import util.Validation;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         RegistrationHandler register = new RegistrationHandler(sc);
 
-        System.out.println("===============================");
-        System.out.println("|                             |");
-        System.out.println("|  EVENT REGISTRATION SYSTEM  |");
-        System.out.println("|                             |");
-        System.out.println("===============================\n");
+        System.out.println("     ===============================");
+        System.out.println("     |                             |");
+        System.out.println("     |  EVENT REGISTRATION SYSTEM  |");
+        System.out.println("     |                             |");
+        System.out.println("     ===============================\n");
 
         int choice;
         do {
+            System.out.println("\n--------------- Main Menu ---------------");
             System.out.println("[1] Register Attendee (Queue)");
             System.out.println("[2] Process Registration");
             System.out.println("[3] View Attendee (Sorted Alphabetically)");
@@ -24,7 +25,7 @@ public class main {
             System.out.println("[7] Exit");
             System.out.println("-----------------------------------------");
             choice = Validation.readValidInteger(sc, 1, 7);
-            System.out.println();
+            System.out.println("\n");
 
             if (choice == 1) register.registerAttendee();
             if (choice == 2) register.processRegistration();

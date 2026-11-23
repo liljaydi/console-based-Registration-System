@@ -9,12 +9,12 @@ public class Node {
         this.data = data;
     }
 
-    // methods below is for sort access
-    // since data and next properties are package-private
-
     public Attendee getData() {
         return data;
     }
+
+    // methods below is for sort access
+    // since next property is package-private
 
     public Node getNext() {
         return next;

@@ -11,6 +11,7 @@ public class LinearSearch {
         Node current = head;
         String searchName = name.trim();
 
+        // traverse from head and find matching name
         while (current != null) {
             Attendee student = current.getData();
 
